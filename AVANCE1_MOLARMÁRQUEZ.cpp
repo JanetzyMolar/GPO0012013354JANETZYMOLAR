@@ -6,8 +6,8 @@
 using namespace std;
 int main()
 {
-    int numJuego, Lanzamiento,opc;
-    double precioUnitario, impuesto,precioImp;
+    int numJuego, Lanzamiento, opc;
+    double precioUnitario, impuesto, precioImp;
     string nombreJuego, caract, genero, descripcion, clasificacion;
 
     cout << "\t ***WORLD OF GAMES*** \n"; //Se abre el meú de opciones de la página
@@ -38,9 +38,9 @@ int main()
         cout << "\t Precio unitario \n";
         cin >> precioUnitario;
         impuesto = (precioUnitario * .16);
-        cout << "\t El impuesto del articulo es de 160  \n";
+        cout << "\t El impuesto del articulo es de" << impuesto << endl;
         precioImp = (precioUnitario + impuesto);
-        cout << "\t El total del precio del articulo es igual a: " << precioImp <<endl;
+        cout << "\t El total del precio del articulo es igual a: " << precioImp << endl;
         cout << "\n \t Son todos los datos necesarios, gracias :) \n" << endl;
 
         return main();
