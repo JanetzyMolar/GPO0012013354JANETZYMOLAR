@@ -1,0 +1,141 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <windows.h> 
+
+using namespace std;
+
+struct VentasWOFG
+{
+    //Se declaran las variables
+    int numJuego=0, Lanzamiento=0, numCompra=0;
+    string nombreJuego="", caract="", genero="", descripcion="", clasificacion="";
+    float precioUnitario=0, impuesto=0, precioImp=0;
+};
+
+int main()
+{
+    VentasWOFG Ventas[3];
+    int opc;
+    string buscar;
+
+    do
+    {
+
+        printf("\t  MENU DE OPCIONES \n \t***WORLD OF GAMES*** \n"); //Se abre el menú de opciones de la página
+        printf(" 1.-Agregar Articulo \n 2.-Modificar Articulo \n 3.-Eliminar Articulo \n 4.-Lista de Articulos Vigentes(Opcion a Genero, Clasificacion) \n 5.-Limpiar pantalla \n 6.-Salir\n");
+        scanf_s("%d", &opc);
+
+        switch (opc) {
+
+        case 1: //Se escoge la opción de "Agregar articulo. Donde se piden los datos generales del juego que se quiera agregar"
+            for (int i = 0; i < 3; i++)
+            {
+                Ventas[i].numCompra = 20220000 + i;
+                printf("N%cmero de Registro %d \n", 163, Ventas[i].numCompra);
+                do
+                {
+                    printf("\t Ingrese el n%cmero del Videojuego que desee agregar a la lista de Articulos \n", 163);
+                    scanf_s("%d", &Ventas[i].numJuego);
+                } while (Ventas[i].numJuego == Ventas[i - 1].numJuego || Ventas[i].numJuego == Ventas[i - 2].numJuego);
+
+                printf("\t Nombre del Videojuego \n");
+                cin.ignore();
+                getline(cin, Ventas[i].nombreJuego);
+                printf("\t A%co de lanzamiento \n", 164);
+                scanf_s("%d", &Ventas[i].Lanzamiento);
+                printf("\t Clasificaci%cn \n", 162);
+                cin.ignore();
+                getline(cin, Ventas[i].clasificacion);
+                printf("\t Caracteristicas \n");
+                cin.ignore();
+                getline(cin, Ventas[i].caract);
+                printf("\t Descripci%cn \n", 162);
+                cin.ignore();
+                getline(cin, Ventas[i].descripcion);
+                printf("\t G%cnero \n", 130);
+                cin.ignore();
+                getline(cin, Ventas[i].genero);
+                printf("\t Precio Unitario \n");
+                scanf_s("%f", &Ventas[i].precioUnitario);
+                Ventas[i].impuesto = (Ventas[i].precioUnitario * .16);
+                printf("\t El impuesto del articulo es de %f \n", Ventas[i].impuesto);
+                Ventas[i].precioImp = (Ventas[i].precioUnitario + Ventas[i].impuesto);
+                printf("\t El total del precio del articulo es igual a: %f \n", Ventas[i].precioImp);
+                printf("\t Son todos los datos necesarios, gracias :) \n");
+            }
+            return main();
+            break;
+        case 2: //Se escoge la opción de "Modificar articulo"
+            break;
+
+        case 3: //Se escoge la opción de "Eliminar archivo"
+            break;
+
+        case 4: // Se escoge la opción de "Lista de articulos"
+            int opc2;
+            printf("\t Opciones de Lista de Art%cculos Vigentes \n", 161);
+            printf("\t 1.- G%cnero \n \t 2.-Clasificaci%cn \n", 130, 162);
+            scanf_s("%d", &opc2);
+
+            if (opc2 == 1)
+            {
+                printf("Ingrese el g%cnero que desee buscar \n", 130);
+                scanf_s("%s", buscar);
+                for (int i = 0; i < 3; i++)
+                {
+                    if (buscar == Ventas[i].genero)
+                    {
+                        printf("\t Los videojuegos que se han encontrado con el g%cnero deseado son: \n", 130);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
+                        printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
+                        printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
+                        printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
+                        printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
+                        printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
+                        printf("Precio Total: %d \n", Ventas[i].precioImp);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+
+                    if (Ventas[i].clasificacion != 0)
+                    {
+                        printf("\t Los videojuegos que se han encontrado con la clasificaci%cn deseada son: \n", 164);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
+                        printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
+                        printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
+                        printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
+                        printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
+                        printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
+                        printf("Precio Total: %d \n", Ventas[i].precioImp);
+                    }
+                }
+            }
+
+
+            break;
+
+        case 5: // Se escoge la opción de "Limpiar pantalla. El usuario pide que la pantalla se limpie de los datos y del menu de opciones"
+            system("cls"); //comando que se utiliza para limpiar la pantalla, en la web se utiliza "clear" en vez de "cls" 
+            return main();
+            break;
+
+        case 6: // Se escoge la opción de "Salir. El usuario sale del programa"
+            cout << "Gracias por utilizar los servicios de WORLD OF GAMES \n";
+            break;
+
+        default:
+            cout << "Ingrese un número de las opciones dadas \n";
+            return main();
+        }
+        system("pause");
+    }while (opc != 5);
+}
