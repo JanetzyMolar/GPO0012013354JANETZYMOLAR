@@ -25,7 +25,6 @@ int main()
     int salida = 1, salir = 1;
     do
     {
-
         printf("\t  MENU DE OPCIONES \n \t***WORLD OF GAMES*** \n"); //Se abre el menú de opciones de la página
         printf(" 1.-Agregar Articulo \n 2.-Modificar Articulo \n 3.-Eliminar Articulo \n 4.-Lista de Articulos Vigentes(Opcion a Genero, Clasificacion) \n 5.-Limpiar pantalla \n 6.-Salir\n");
         scanf_s("%d", &opc);
@@ -84,59 +83,57 @@ int main()
             scanf_s("%d", &opc2);
             if (opc2 == 1) //Se imprimen todos los articulos registrados 
             {
-                
-                    for (int i = 0; i < 3; i++)
-                    {
-                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
-                        printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
-                        printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
-                        printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
-                        printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
-                        printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
-                        printf("Precio Unitario: %f \n", Ventas[i].precioUnitario);
-                        printf("Precio Total: %f \n", Ventas[i].precioImp);
-                        system("pause");
 
-                    }
+                for (int i = 0; i < 3; i++)
+                {
+                    printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
+                    printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
+                    printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
+                    printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
+                    printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
+                    printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
+                    printf("Precio Unitario: %f \n", Ventas[i].precioUnitario);
+                    printf("Precio Total: %f \n", Ventas[i].precioImp);
+                }
             }
             if (opc2 == 2) //Se busca el genero y se imprimen los registrados
             {
                 printf("Ingrese el g%cnero que desee buscar \n", 130);
-                scanf_s("%s", buscar);
+                cin.ignore();
+                getline(cin, buscar);
                 for (int i = 0; i < 3; i++)
                 {
                     if (buscar.compare(Ventas[i].genero) == 0) //Se utiliza un compare para comparar entre cadenas y mostrar lo que pedido
                     {
                         printf("\t Los videojuegos que se han encontrado con el g%cnero deseado son: \n", 130);
-                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
                         printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
                         printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
                         printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
                         printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
                         printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
                         printf("Precio Total: %d \n", Ventas[i].precioImp);
-                        system("pause");
                     }
                 }
             }
             if (opc2 == 3) //Se busca la clasificacion y se imprimen los registrados
             {
                 printf("Ingrese la clasificacion que desee buscar \n");
-                scanf_s("%s", buscar);
+                cin.ignore();
+                getline(cin, buscar);
                 for (int i = 0; i < 3; i++)
                 {
                     bandera = buscar.compare(Ventas[i].clasificacion); //Prueba de otra forma de como usar el compare
                     if (bandera == 0)
                     {
                         printf("\t Los videojuegos que se han encontrado con la clasificaci%cn deseada son: \n", 164);
-                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
                         printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
                         printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
                         printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
                         printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
                         printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
                         printf("Precio Total: %d \n", Ventas[i].precioImp);
-                        system("pause");
                     }
                 }
             }
