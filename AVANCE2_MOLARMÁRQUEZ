@@ -14,7 +14,7 @@ struct VentasWOFG
     //Se declaran las variables
     int numJuego = 0, Lanzamiento = 0, numCompra = 0;
     string nombreJuego = "", caract = "", genero = "", descripcion = "", clasificacion = "";
-    double precioUnitario = 0, impuesto = 0, precioImp = 0;
+    float precioUnitario = 0, impuesto = 0, precioImp = 0;
 };
 
 int main()
