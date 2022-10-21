@@ -86,7 +86,7 @@ int main()
 
                 for (int i = 0; i < 3; i++)
                 {
-                    printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
+                    printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str());
                     printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
                     printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
                     printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
@@ -106,7 +106,7 @@ int main()
                     if (buscar.compare(Ventas[i].genero) == 0) //Se utiliza un compare para comparar entre cadenas y mostrar lo que pedido
                     {
                         printf("\t Los videojuegos que se han encontrado con el g%cnero deseado son: \n", 130);
-                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str());
                         printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
                         printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
                         printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
@@ -127,7 +127,7 @@ int main()
                     if (bandera == 0)
                     {
                         printf("\t Los videojuegos que se han encontrado con la clasificaci%cn deseada son: \n", 164);
-                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str);
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego.c_str());
                         printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
                         printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
                         printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
@@ -156,3 +156,4 @@ int main()
     } while (opc != 5);
     system("pause");
 }
+
