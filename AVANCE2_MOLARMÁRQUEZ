@@ -12,17 +12,17 @@ using namespace std;
 struct VentasWOFG
 {
     //Se declaran las variables
-    int numJuego=0, Lanzamiento=0, numCompra=0;
-    string nombreJuego="", caract="", genero="", descripcion="", clasificacion="";
-    float precioUnitario=0, impuesto=0, precioImp=0;
+    int numJuego = 0, Lanzamiento = 0, numCompra = 0;
+    string nombreJuego = "", caract = "", genero = "", descripcion = "", clasificacion = "";
+    double precioUnitario = 0, impuesto = 0, precioImp = 0;
 };
 
 int main()
 {
     VentasWOFG Ventas[3];
-    int opc;
-    string buscar;
-
+    int opc = 0, bandera = 0;
+    string buscar = "";
+    int salida = 1, salir = 1;
     do
     {
 
@@ -37,7 +37,7 @@ int main()
             {
                 Ventas[i].numCompra = 20220000 + i;
                 printf("N%cmero de Registro %d \n", 163, Ventas[i].numCompra);
-                do
+                do //Se evita que el número del videojuego sea repetido
                 {
                     printf("\t Ingrese el n%cmero del Videojuego que desee agregar a la lista de Articulos \n", 163);
                     scanf_s("%d", &Ventas[i].numJuego);
@@ -61,12 +61,12 @@ int main()
                 cin.ignore();
                 getline(cin, Ventas[i].genero);
                 printf("\t Precio Unitario \n");
-                scanf_s("%f", &Ventas[i].precioUnitario);
+                scanf_s("%lf", &Ventas[i].precioUnitario);
                 Ventas[i].impuesto = (Ventas[i].precioUnitario * .16);
                 printf("\t El impuesto del articulo es de %f \n", Ventas[i].impuesto);
                 Ventas[i].precioImp = (Ventas[i].precioUnitario + Ventas[i].impuesto);
                 printf("\t El total del precio del articulo es igual a: %f \n", Ventas[i].precioImp);
-                printf("\t Son todos los datos necesarios, gracias :) \n");
+                printf("\t Son todos los datos necesarios, gracias :) \n \n");
             }
             return main();
             break;
@@ -78,17 +78,34 @@ int main()
 
         case 4: // Se escoge la opción de "Lista de articulos"
             int opc2;
-            printf("\t Opciones de Lista de Art%cculos Vigentes \n", 161);
-            printf("\t 1.- G%cnero \n \t 2.-Clasificaci%cn \n", 130, 162);
-            scanf_s("%d", &opc2);
 
-            if (opc2 == 1)
+            printf("\t Opciones de Lista de Art%cculos Vigentes \n", 161);
+            printf("\t1.- Imprimir todos los art%cculos vigentes \n\t 2.- G%cnero \n \t 3.-Clasificaci%cn \n ", 161, 130, 162);
+            scanf_s("%d", &opc2);
+            if (opc2 == 1) //Se imprimen todos los articulos registrados 
+            {
+                
+                    for (int i = 0; i < 3; i++)
+                    {
+                        printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
+                        printf("A%co de lanzamiento del videojuego: %d \n", 164, Ventas[i].Lanzamiento);
+                        printf("Caracteristicas del videojuego: %s \n", Ventas[i].caract.c_str());
+                        printf("Clasificaci%c del videojuego: %s \n", 164, Ventas[i].clasificacion.c_str());
+                        printf("G%cnero del videojuego: %s \n", 130, Ventas[i].genero.c_str());
+                        printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
+                        printf("Precio Unitario: %f \n", Ventas[i].precioUnitario);
+                        printf("Precio Total: %f \n", Ventas[i].precioImp);
+                        system("pause");
+
+                    }
+            }
+            if (opc2 == 2) //Se busca el genero y se imprimen los registrados
             {
                 printf("Ingrese el g%cnero que desee buscar \n", 130);
                 scanf_s("%s", buscar);
                 for (int i = 0; i < 3; i++)
                 {
-                    if (buscar == Ventas[i].genero)
+                    if (buscar.compare(Ventas[i].genero) == 0) //Se utiliza un compare para comparar entre cadenas y mostrar lo que pedido
                     {
                         printf("\t Los videojuegos que se han encontrado con el g%cnero deseado son: \n", 130);
                         printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
@@ -98,15 +115,18 @@ int main()
                         printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
                         printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
                         printf("Precio Total: %d \n", Ventas[i].precioImp);
+                        system("pause");
                     }
                 }
             }
-            else
+            if (opc2 == 3) //Se busca la clasificacion y se imprimen los registrados
             {
+                printf("Ingrese la clasificacion que desee buscar \n");
+                scanf_s("%s", buscar);
                 for (int i = 0; i < 3; i++)
                 {
-
-                    if (Ventas[i].clasificacion != 0)
+                    bandera = buscar.compare(Ventas[i].clasificacion); //Prueba de otra forma de como usar el compare
+                    if (bandera == 0)
                     {
                         printf("\t Los videojuegos que se han encontrado con la clasificaci%cn deseada son: \n", 164);
                         printf("Nombre del videojuego: %s \n", Ventas[i].nombreJuego);
@@ -116,11 +136,10 @@ int main()
                         printf("Descripci%cn del videojuego: %s \n", 164, Ventas[i].descripcion.c_str());
                         printf("Precio Unitario: %d \n", Ventas[i].precioUnitario);
                         printf("Precio Total: %d \n", Ventas[i].precioImp);
+                        system("pause");
                     }
                 }
             }
-
-
             break;
 
         case 5: // Se escoge la opción de "Limpiar pantalla. El usuario pide que la pantalla se limpie de los datos y del menu de opciones"
@@ -135,7 +154,8 @@ int main()
         default:
             cout << "Ingrese un número de las opciones dadas \n";
             return main();
+
         }
-        system("pause");
-    }while (opc != 5);
+    } while (opc != 5);
+    system("pause");
 }
