@@ -142,7 +142,6 @@ void alta()
 				printf("Ingrese una opci%cn correcta \n", 162);
 
 			}
-			/
 		}
 	}
 }
