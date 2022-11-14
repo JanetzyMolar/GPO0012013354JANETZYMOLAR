@@ -176,11 +176,14 @@ void modificar()
 			}
 			break;
 		case 3:
-			for (int i = 0; i < registros; i++)
+			if (modificar == numJuego[i])
 			{
-				printf("Ingrese el g%cnero \n \tEl g%cnero del art%cculo deber%c ser escrito en may%csculas y sin acentos. EJEMPLO:  -INFANTIL- -FANTASIA- -AVENTURA- -SIMULACION-\n", 130, 130, 161, 160, 163);
-				cin.ignore();
-				getline(cin, genero[i]);
+				for (int i = 0; i < registros; i++)
+				{
+					printf("Ingrese el g%cnero \n \tEl g%cnero del art%cculo deber%c ser escrito en may%csculas y sin acentos. EJEMPLO:  -INFANTIL- -FANTASIA- -AVENTURA- -SIMULACION-\n", 130, 130, 161, 160, 163);
+					cin.ignore();
+					getline(cin, genero[i]);
+				}
 			}
 			break;
 		case 4:
