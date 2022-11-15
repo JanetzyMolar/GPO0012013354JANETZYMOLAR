@@ -90,21 +90,22 @@ void alta()
 
 	for (int i = 0; i < registros; i++)
 	{
-		printf("Ingrese el n%cmero del art%cculo \n", 163, 161);
+		printf("Ingrese el numero de articulo\n");
 		scanf_s("%d", &numJuego[i]);
 		do
 		{
-			if (numJuego[i] != numJuego[i - n])
+			if (numJuego[i] == numJuego[i - n])
 			{
-				n = n + 1;
+				printf("el articulo ya existe \n");
+				printf("ingrese el numero de articulo \n");
+				scanf_s("%d", &numJuego[i]);
 			}
 			else
 			{
-				printf("El n%cmero del art%cculo ya existe \n", 163, 161);
-				printf("Ingrese el n%cmero del art%cculo \n", 163, 161);
-				scanf_s("%d", &numJuego[i]);
+				n = n + 1;
 			}
-		} while (n < registros);
+		} while (n <= i);
+		n = 1;
 		printf("Ingrese el a%co del art%cculo \n", 164, 161);
 		scanf_s("%d", &lanzamiento[i]);
 		printf("Ingrese el nombre del art%cculo \n", 161);
@@ -125,39 +126,21 @@ void alta()
 		printf("Su precio total es de %f \n \n", total[i]);
 		printf("\t\t\t\t\t\tSon todos los datos necesarios, gracias :) \n \n");
 
-		if ((registros - 1) == i)
-		{
-			int desicion;
-			printf("\t Ingrese la opcci%cn si quiere dar de alta otro art%cculo \n1.Si \n2.No \n", 162, 161);
-			scanf_s("%d", &desicion);
-			switch (desicion)
-			{
-			case 1:
-				registros = registros + 1;
-				break;
-			case 2:
-				break;
-
-			default:
-				printf("Ingrese una opci%cn correcta \n", 162);
-
-			}
-		}
 	}
 }
 
 void modificar()
 {
-	int modificar;
+	int modd;
 	int opmod;
-	
+
 	printf("Ingrese la opci%cn que desea modificar del art%cculo \n1.Nombre \n2.A%co\n3.G%cnero\n4.Clasificaci%cn\n5.Descripci%cn\n6.Caracter%csticas\n7.Precio\n8.Todo\n", 162, 161, 164, 130, 162, 162, 161);
 
 	scanf_s("%d", &opmod);
 	do
 	{
 		printf("Ingrese el n%cmero del art%cculo a modificar \n", 163, 161);
-		scanf_s("%d", &modificar);
+		scanf_s("%d", &modd);
 		switch (opmod)
 		{
 		case 1:
@@ -176,51 +159,63 @@ void modificar()
 			}
 			break;
 		case 3:
-				for (int i = 0; i < registros; i++)
+			for (int i = 0; i < registros; i++)
+			{
+				if (modd == numJuego[i])
 				{
-					if (modificar == numJuego[i])
-					{
 					printf("Ingrese el g%cnero \n \tEl g%cnero del art%cculo deber%c ser escrito en may%csculas y sin acentos. EJEMPLO:  -INFANTIL- -FANTASIA- -AVENTURA- -SIMULACION-\n", 130, 130, 161, 160, 163);
 					cin.ignore();
 					getline(cin, genero[i]);
-					}
 				}
-			
+			}
+
 			break;
 		case 4:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Ingrese la clasificaci%cn del art%cculo \n", 162, 161);
-				getline(cin, clasf[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Ingrese la clasificaci%cn del art%cculo \n", 162, 161);
+					getline(cin, clasf[i]);
+				}
 			}
 			break;
 		case 5:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Ingrese la descripci%cn del art%cculo \n", 162, 161);
-				getline(cin, desc[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Ingrese la descripci%cn del art%cculo \n", 162, 161);
+					getline(cin, desc[i]);
+				}
 			}
 			break;
 		case 6:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Ingrese las caracter%csticas del art%cculo \n", 161, 161);
-				getline(cin, caract[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Ingrese las caracter%csticas del art%cculo \n", 161, 161);
+					getline(cin, caract[i]);
+				}
 			}
 			break;
 		case 7:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Su precio Unitario \n");
-				scanf_s("%f", &precio[i]);
-				impuesto[i] = (precio[i] * .16);
-				total[i] = (precio[i] + impuesto[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Su precio Unitario \n");
+					scanf_s("%f", &precio[i]);
+					impuesto[i] = (precio[i] * .16);
+					total[i] = (precio[i] + impuesto[i]);
+				}
 			}
 			break;
 		case 8:
 			for (int i = 0; i < registros; i++)
 			{
-				if (modificar == numJuego[i])
+				if (modd == numJuego[i])
 				{
 					printf("Ingrese el a%co del art%cculo \n", 164, 161);
 					scanf_s("%d", &lanzamiento[i]);
@@ -249,27 +244,30 @@ void modificar()
 
 		}
 
-	} while (modificar < 0);
+	} while (modd < 0);
 }
 
 void eliminar()
 {
-	int eliminar;
+	int eli;
 	printf("Ingrese el n%cmero del art%cculo a eliminar \n", 163, 161);
-	scanf_s("%d", &eliminar);
+	scanf_s("%d", &eli);
 
 	for (int i = 0; i < registros; i++)
 	{
-		numJuego[i] = 0;
-		lanzamiento[i] = 0;
-		nombre[i] = "";
-		caract[i] = "";
-		desc[i] = "";
-		genero[i] = "";
-		clasf[i] = "";
-		precio[i] = 0;
-		impuesto[i] = 0;
-		total[i] = 0;
+		if (eli == numJuego[i])
+		{
+			numJuego[i] = 0;
+			lanzamiento[i] = 0;
+			nombre[i] = "";
+			caract[i] = "";
+			desc[i] = "";
+			genero[i] = "";
+			clasf[i] = "";
+			precio[i] = 0;
+			impuesto[i] = 0;
+			total[i] = 0;
+		}
 	}
 }
 
@@ -295,7 +293,7 @@ void lista()
 				printf("\t Descripci%cn: %s \n", 162, desc[i].c_str());
 				printf("\t Precio %f \n", precio[i]);
 				printf("\t Impuesto %f \n", impuesto[i]);
-				printf("\t Total %f \n \n", total[i]);
+				printf("\t Total %f \n \n \n", total[i]);
 			}
 		}
 
@@ -319,7 +317,7 @@ void lista()
 					printf("\t Descripci%cn: %s \n", 162, desc[i].c_str());
 					printf("\t Precio %f \n", precio[i]);
 					printf("\t Impuesto %f \n", impuesto[i]);
-					printf("\t Total %f \n \n", total[i]);
+					printf("\t Total %f \n \n \n", total[i]);
 				}
 				else {
 
@@ -346,7 +344,7 @@ void lista()
 				printf("\t Descripci%cn: %s \n", 162, desc[i].c_str());
 				printf("\t Precio %f \n", precio[i]);
 				printf("\t Impuesto %f \n", impuesto[i]);
-				printf("\t Total %f \n", total[i]);
+				printf("\t Total %f \n \n \n", total[i]);
 			}
 		}
 		break;
