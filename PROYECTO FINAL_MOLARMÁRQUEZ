@@ -90,14 +90,14 @@ void alta()
 
 	for (int i = 0; i < registros; i++)
 	{
-		printf("Ingrese el numero de articulo\n");
+		printf("Ingrese el n%cmero de articulo\n", 163);
 		scanf_s("%d", &numJuego[i]);
 		do
 		{
 			if (numJuego[i] == numJuego[i - n])
 			{
-				printf("el articulo ya existe \n");
-				printf("ingrese el numero de articulo \n");
+				printf("El articulo ya existe \n");
+				printf("Ingrese el n%cmero de articulo \n", 163);
 				scanf_s("%d", &numJuego[i]);
 			}
 			else
@@ -146,16 +146,22 @@ void modificar()
 		case 1:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Ingrese el nombre del art%cculo \n", 161);
-				cin.ignore();
-				getline(cin, nombre[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Ingrese el nombre del art%cculo \n", 161);
+					cin.ignore();
+					getline(cin, nombre[i]);
+				}
 			}
 			break;
 		case 2:
 			for (int i = 0; i < registros; i++)
 			{
-				printf("Ingrese el a%co del art%cculo \n", 164, 161);
-				scanf_s("%d", &lanzamiento[i]);
+				if (modd == numJuego[i])
+				{
+					printf("Ingrese el a%co del art%cculo \n", 164, 161);
+					scanf_s("%d", &lanzamiento[i]);
+				}
 			}
 			break;
 		case 3:
@@ -176,6 +182,7 @@ void modificar()
 				if (modd == numJuego[i])
 				{
 					printf("Ingrese la clasificaci%cn del art%cculo \n", 162, 161);
+					cin.ignore();
 					getline(cin, clasf[i]);
 				}
 			}
@@ -186,6 +193,7 @@ void modificar()
 				if (modd == numJuego[i])
 				{
 					printf("Ingrese la descripci%cn del art%cculo \n", 162, 161);
+					cin.ignore();
 					getline(cin, desc[i]);
 				}
 			}
@@ -196,6 +204,7 @@ void modificar()
 				if (modd == numJuego[i])
 				{
 					printf("Ingrese las caracter%csticas del art%cculo \n", 161, 161);
+					cin.ignore();
 					getline(cin, caract[i]);
 				}
 			}
@@ -370,19 +379,22 @@ void archivo()
 		exit(1);
 	}
 
-	for (int i = 0; i < registros; i++)
-	{
-		archivos << "NUMERO DE JUEGO: " << numJuego[i] << "\n";
-		archivos << "FECHA DE LANZAMIENTO: " << lanzamiento[i] << "\n";
-		archivos << "NOMBRE DE JUEGO: " << nombre[i] << "\n";
-		archivos << "CARACTERISTICAS: " << caract[i] << "\n";
-		archivos << "GENERO: " << genero[i] << "\n";
-		archivos << "DESCRIPCION_ " << desc[i] << "\n";
-		archivos << "CLASIFICACION: " << clasf[i] << "\n";
-		archivos << "PRECIO UNITARIO: " << precio[i] << "\n";
-		archivos << "IMPUESTO: " << impuesto[i] << "\n";
-		archivos << "TOTAL: " << total[i] << "\n \n";
-	}
+	
+		for (int i = 0; i < registros; i++)
+		{
+			archivos << "NUMERO DE JUEGO: " << numJuego[i] << "\n";
+			archivos << "FECHA DE LANZAMIENTO: " << lanzamiento[i] << "\n";
+			archivos << "NOMBRE DE JUEGO: " << nombre[i] << "\n";
+			archivos << "CARACTERISTICAS: " << caract[i] << "\n";
+			archivos << "GENERO: " << genero[i] << "\n";
+			archivos << "DESCRIPCION_ " << desc[i] << "\n";
+			archivos << "CLASIFICACION: " << clasf[i] << "\n";
+			archivos << "PRECIO UNITARIO: " << precio[i] << "\n";
+			archivos << "IMPUESTO: " << impuesto[i] << "\n";
+			archivos << "TOTAL: " << total[i] << "\n \n";
+			
+		}
+	
 
 	archivos.close();
 }
